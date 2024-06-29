@@ -7,11 +7,15 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    background-image: url('assets/knightbrazil.jpeg');
+    background-size: cover; /* Stretch and cover the entire background */
+    background-position: center;
+    background-repeat: no-repeat; /* Prevents repeating the image */
 }
 
 .leaderboard-container {
     text-align: center;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -20,11 +24,13 @@ body {
 h1 {
     font-size: 2em;
     margin-bottom: 20px;
+    color: #333; /* Ensuring header text color stands out */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px; /* Added margin for spacing */
 }
 
 th, td {
