@@ -1,50 +1,62 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+// This function initializes Firebase and fetches leaderboard data
+function initFirebaseAndFetchData() {
+    // Check if Firebase is loaded
+    if (typeof firebase !== 'undefined') {
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAmwFGPUbQvpI7pdnk_CL91G3FTMiHF-BE",
+            authDomain: "kdatracker-d3c35.firebaseapp.com",
+            databaseURL: "https://kdatracker-d3c35-default-rtdb.firebaseio.com",
+            projectId: "kdatracker-d3c35",
+            storageBucket: "kdatracker-d3c35.appspot.com",
+            messagingSenderId: "136263581659",
+            appId: "1:136263581659:web:c78b7d31dd313af8f0f1fe"
+        };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAmwFGPUbQvpI7pdnk_CL91G3FTMiHF-BE",
-  authDomain: "kdatracker-d3c35.firebaseapp.com",
-  databaseURL: "https://kdatracker-d3c35-default-rtdb.firebaseio.com",
-  projectId: "kdatracker-d3c35",
-  storageBucket: "kdatracker-d3c35.appspot.com",
-  messagingSenderId: "136263581659",
-  appId: "1:136263581659:web:c78b7d31dd313af8f0f1fe"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
-
-function fetchLeaderboardData() {
-    // Reference to the Firestore collection
-    const leaderboardRef = db.collection('leaderboard');
-
-    // Fetch the top 10 players, ordered by score descending
-    leaderboardRef.orderBy('score', 'desc').limit(10).get()
-    .then(querySnapshot => {
-        const leaderboardTable = document.getElementById('leaderboard').getElementsByTagName('tbody')[0];
-        leaderboardTable.innerHTML = ''; // Clear previous data
-
-        let rank = 1;
-        querySnapshot.forEach(doc => {
-            const playerData = doc.data();
-            const row = leaderboardTable.insertRow();
-            row.innerHTML = `
-                <td>${rank}</td>
-                <td>${playerData.name}</td>
-                <td>${playerData.score}</td>
-            `;
-            rank++;
-        });
-    })
-    .catch(error => {
-        console.error("Error fetching leaderboard data: ", error);
-    });
-}
-
-// Fetch leaderboard data on page load
-document.addEventListener('DOMContentLoaded', fetchLeaderboardData);
+         // Initialize Firebase
+         firebase.initializeApp(firebaseConfig);
+         const db = firebase.database();
+ 
+         function fetchLeaderboardData() {
+            // Reference to the Realtime Database node 'leaderboard'
+            const leaderboardRef = db.ref('leaderboard');
+        
+            // Fetch the leaderboard data ordered by score (descending)
+            leaderboardRef.orderByChild('score').limitToLast(10).once('value')
+            .then(snapshot => {
+                const leaderboardTable = document.getElementById('leaderboard').getElementsByTagName('tbody')[0];
+                leaderboardTable.innerHTML = ''; // Clear previous data
+        
+                // Firebase returns the data in descending order (highest score first)
+                let rank = 1;
+                snapshot.forEach(childSnapshot => {
+                    const playerData = childSnapshot.val();
+                    if (playerData && playerData.player !== undefined && playerData.kills !== undefined && playerData.deaths !== undefined) {
+                        const row = leaderboardTable.insertRow();
+                        row.innerHTML = `
+                            <td>${rank}</td>
+                            <td>${playerData.player}</td>
+                            <td>${playerData.kills}</td>
+                            <td>${playerData.deaths}</td>
+                        `;
+                        rank++;
+                    } else {
+                        console.warn('Missing fields in playerData:', playerData);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching leaderboard data: ", error);
+            });
+        }
+        
+ 
+         // Fetch leaderboard data
+         fetchLeaderboardData();
+     } else {
+         console.error('Firebase SDK not loaded.');
+     }
+ }
+ 
+ // Wait for DOM content to be fully loaded before initializing Firebase
+ document.addEventListener('DOMContentLoaded', initFirebaseAndFetchData);

@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAG Leaderboard</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js"></script>
-    <!-- Your custom script -->
+    <!-- Load Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <!-- Load Firebase Realtime Database -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <!-- Your custom script (must load after Firebase) -->
     <script defer src="script.js"></script>
 </head>
 <body>
@@ -16,9 +18,10 @@
         <table id="leaderboard">
             <thead>
                 <tr>
-                    <th>Rank</th>
-                    <th>Player Name</th>
-                    <th>Score</th>
+                    <th>Posição</th>
+                    <th>Nome do Jogador</th>
+                    <th>Abates</th>
+                    <th>Mortes</th>
                 </tr>
             </thead>
             <tbody>
