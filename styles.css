@@ -52,11 +52,11 @@ tr:hover {
 }
 
 .highlight-kills {
-    background-color: #adf0bd; /* Light green background */
+    background-color: #75ff95; /* Light green background */
     transition: background-color 1s ease;
 }
 
 .highlight-deaths {
-    background-color: #fd8993; /* Light red background */
+    background-color: #ff8d97; /* Light red background */
     transition: background-color 1s ease;
 }
