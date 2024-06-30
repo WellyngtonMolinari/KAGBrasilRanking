@@ -1,3 +1,4 @@
+/* Body and container styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -51,12 +52,30 @@ tr:hover {
     background-color: #ddd;
 }
 
+/* Highlight for kills with fade out */
+@keyframes fadeOutGreen {
+    from {
+        background-color: rgba(117, 255, 149, 1); /* Light green */
+    }
+    to {
+        background-color: rgba(117, 255, 149, 0); /* Transparent */
+    }
+}
+
 .highlight-kills {
-    background-color: #75ff95; /* Light green background */
-    transition: background-color 1s ease;
+    animation: fadeOutGreen 3s ease forwards; /* Use the fadeOutGreen animation */
+}
+
+/* Highlight for deaths with fade out */
+@keyframes fadeOutRed {
+    from {
+        background-color: rgba(255, 141, 151, 1); /* Light red */
+    }
+    to {
+        background-color: rgba(255, 141, 151, 0); /* Transparent */
+    }
 }
 
 .highlight-deaths {
-    background-color: #ff8d97; /* Light red background */
-    transition: background-color 1s ease;
+    animation: fadeOutRed 3s ease forwards; /* Use the fadeOutRed animation */
 }

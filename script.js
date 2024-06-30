@@ -1,7 +1,5 @@
 function initFirebaseAndFetchData() {
-    // Check if Firebase is loaded
     if (typeof firebase !== 'undefined') {
-        // Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAmwFGPUbQvpI7pdnk_CL91G3FTMiHF-BE",
             authDomain: "kdatracker-d3c35.firebaseapp.com",
@@ -12,36 +10,35 @@ function initFirebaseAndFetchData() {
             appId: "1:136263581659:web:c78b7d31dd313af8f0f1fe"
         };
 
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
         function updateLeaderboard(snapshot) {
             const leaderboardTable = document.getElementById('leaderboard').getElementsByTagName('tbody')[0];
-            const oldRows = leaderboardTable.querySelectorAll('tr'); // Get existing rows
+            const oldRows = leaderboardTable.querySelectorAll('tr');
             leaderboardTable.innerHTML = ''; // Clear previous data
 
-            // Collect data in an array and sort it manually in descending order by kills
             const data = [];
             snapshot.forEach(childSnapshot => {
                 data.push(childSnapshot.val());
             });
 
-            // Sort the data by kills in descending order
-            data.sort((a, b) => b.kills - a.kills);
+            data.sort((a, b) => b.kills - a.kills); // Sort by kills in descending order
 
             let rank = 1;
             data.forEach(playerData => {
                 if (playerData && playerData.player !== undefined && playerData.kills !== undefined && playerData.deaths !== undefined) {
                     const row = leaderboardTable.insertRow();
+                    const kdr = playerData.deaths === 0 ? playerData.kills : (playerData.kills / playerData.deaths).toFixed(1); // Calculate KDR and format to 2 decimal places
+
                     row.innerHTML = `
                         <td>${rank}</td>
                         <td>${playerData.player}</td>
                         <td>${playerData.kills}</td>
                         <td>${playerData.deaths}</td>
+                        <td>${kdr}</td>
                     `;
-                    
-                    // Check if this row was updated
+
                     const oldRow = Array.from(oldRows).find(oldRow => {
                         const cells = oldRow.children;
                         return cells[1].innerText === playerData.player;
@@ -71,7 +68,6 @@ function initFirebaseAndFetchData() {
             });
         }
 
-        // Listen for changes in the leaderboard data and order by 'kills'
         const leaderboardRef = db.ref('leaderboard');
         leaderboardRef.on('value', snapshot => {
             updateLeaderboard(snapshot);
@@ -82,5 +78,4 @@ function initFirebaseAndFetchData() {
     }
 }
 
-// Wait for DOM content to be fully loaded before initializing Firebase
 document.addEventListener('DOMContentLoaded', initFirebaseAndFetchData);
