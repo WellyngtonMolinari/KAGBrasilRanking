@@ -34,3 +34,41 @@ O sistema de ranking foi criado para:
 - `styles.css`: Arquivo de estilo para estilização da tabela e outros elementos da página.
 - `script.js`: Arquivo JavaScript que lida com a interação com o Firebase e a atualização da tabela em tempo real.
 - `assets/`: Pasta contendo imagens e outros recursos utilizados na página.
+
+## Configuração
+
+### Firebase
+
+Para configurar seu próprio sistema de ranking:
+
+1. **Crie um Projeto Firebase**: Acesse o [Firebase Console](https://console.firebase.google.com/) e crie um novo projeto.
+2. **Configure o Realtime Database**: Siga as instruções para habilitar o Realtime Database e configure as regras de segurança para permitir a leitura dos dados pelo seu site.
+3. **Atualize as Configurações do Firebase**: No arquivo `script.js`, substitua a configuração do Firebase pelo seu próprio `firebaseConfig`.
+
+### GitHub Pages
+
+Para hospedar a página no GitHub Pages:
+
+1. **Clone o Repositório**: Clone este repositório para a sua máquina local.
+2. **Faça as Modificações Necessárias**: Ajuste o código e as configurações conforme necessário.
+3. **Configure o GitHub Pages**: No repositório do GitHub, acesse as configurações e habilite o GitHub Pages a partir da branch `main` ou `gh-pages`.
+
+## Como Contribuir
+
+Contribuições são bem-vindas! Se você tiver sugestões, encontrar bugs ou quiser adicionar novas funcionalidades, sinta-se à vontade para abrir uma issue ou enviar um pull request.
+
+## Contato
+
+Se você tiver dúvidas ou precisar de ajuda, entre em contato através de:
+
+- **Email**: wellymolinari97@gmail.com
+- **Discord**: wellymolinari
+- **Servidor do KAG Brasil**: [Link para o Discord do Servidor](https://discord.gg/54gPhJdUVe)
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
+
+**Divirta-se e bom jogo!**
