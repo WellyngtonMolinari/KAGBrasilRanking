@@ -73,3 +73,5 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 ---
 
 **Divirta-se e bom jogo!**
+
+<i>"O Senhor é o meu pastor: nada me faltará." -Salmos 23:1</i>
