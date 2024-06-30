@@ -50,3 +50,13 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
+
+.highlight-kills {
+    background-color: #adf0bd; /* Light green background */
+    transition: background-color 1s ease;
+}
+
+.highlight-deaths {
+    background-color: #fd8993; /* Light red background */
+    transition: background-color 1s ease;
+}
