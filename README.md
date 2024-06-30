@@ -64,7 +64,7 @@ Se você tiver dúvidas ou precisar de ajuda, entre em contato através de:
 - **Email**: wellymolinari97@gmail.com
 - **Discord**: wellymolinari
 - **Servidor do KAG Brasil**: [Link para o Discord do Servidor](https://discord.gg/54gPhJdUVe)
-- **Raking do KAG Brasil**: [Link para a página do projeto](ttps://wellyngtonmolinari.github.io/KagBRASILRanking/)
+- **Ranking do KAG Brasil**: [Link para a página do projeto](https://wellyngtonmolinari.github.io/KagBRASILRanking/)
   
 ## Licença
 
